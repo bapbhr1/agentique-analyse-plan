@@ -1,0 +1,6 @@
+# Systeme multi-agents de description de plans (VLM Azure)
+openai
+python-dotenv
+opencv-python
+Pillow
+easyocr   # optionnel : OCR utilise par certains snippets de workers

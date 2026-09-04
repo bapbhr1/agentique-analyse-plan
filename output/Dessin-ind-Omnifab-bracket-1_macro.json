@@ -1,0 +1,165 @@
+{
+  "type_document": "plan mécanique",
+  "domaine": "usinage / mécanique industrielle",
+  "titre": "BRACKET CALIBRATION 6 AXES",
+  "meta": {
+    "numero_plan": "33951DEM2020",
+    "revision": "0",
+    "echelle": null,
+    "langue": "français"
+  },
+  "resume_macro": "Il s’agit d’un plan de fabrication d’une pièce mécanique usinée de type support/bride de calibration. La feuille rassemble plusieurs vues orthogonales cotées, deux coupes nommées A-A et B-B, deux vues isométriques et des tableaux de repérage de trous. La pièce a globalement la forme d’un bloc rectangulaire avec une face supérieure en deux niveaux. Une zone à gauche regroupe un alésage central entouré de petits perçages, tandis qu’une zone à droite regroupe deux perçages principaux plus grands et des perçages secondaires associés. Le bas de la feuille contient les notes générales, tolérances, états de surface et le cartouche de fabrication OMNIFAB.",
+  "zones_principales": [
+    {
+      "nom": "Zone de vues orthogonales à gauche",
+      "role": "montrer la géométrie principale et le positionnement des trous",
+      "contient": [
+        "vue de dessus cotée",
+        "vue orthogonale mince de profil/chant",
+        "grande vue principale cotée en bas gauche"
+      ]
+    },
+    {
+      "nom": "Zone des coupes au centre droit",
+      "role": "montrer la structure interne des perçages et les différences d'épaisseur",
+      "contient": [
+        "SECTION B-B",
+        "SECTION A-A"
+      ]
+    },
+    {
+      "nom": "Zone de perspectives à droite",
+      "role": "donner une compréhension volumique rapide de la pièce",
+      "contient": [
+        "vue isométrique supérieure",
+        "vue isométrique opposée / dessous"
+      ]
+    },
+    {
+      "nom": "Zone des tableaux de trous",
+      "role": "associer des repères de trous à leurs positions de référence",
+      "contient": [
+        "Hole Table en haut gauche",
+        "Hole Table en bas centre-droit"
+      ]
+    },
+    {
+      "nom": "Bandeau inférieur de notes et cartouche",
+      "role": "fournir les règles de fabrication et l’identification du plan",
+      "contient": [
+        "notes générales",
+        "tolérances générales",
+        "états de surface",
+        "cartouche OMNIFAB"
+      ]
+    }
+  ],
+  "elements_cles": [
+    {
+      "label": "BRACKET CALIBRATION 6 AXES",
+      "categorie": "titre de plan / pièce",
+      "role": "identifie la pièce représentée"
+    },
+    {
+      "label": "USINAGE",
+      "categorie": "instruction de procédé",
+      "role": "indique que la pièce est à usiner"
+    },
+    {
+      "label": "USINER SELON LE FICHIER .STEP",
+      "categorie": "instruction",
+      "role": "précise que la géométrie de référence suit le fichier numérique"
+    },
+    {
+      "label": "SECTION A-A",
+      "categorie": "vue en coupe",
+      "role": "montre le profil étagé et les perçages vus en coupe"
+    },
+    {
+      "label": "SECTION B-B",
+      "categorie": "vue en coupe",
+      "role": "montre un perçage transversal/local en coupe"
+    },
+    {
+      "label": "Hole Table",
+      "categorie": "tableau de repérage",
+      "role": "donne les repères de trous et leurs références"
+    },
+    {
+      "label": "2x R1/8",
+      "categorie": "taraudage / raccord fileté",
+      "role": "signale deux perçages filetés de type R1/8"
+    },
+    {
+      "label": "2x Ø3/16 THRU",
+      "categorie": "perçages traversants",
+      "role": "indique deux trous traversants sur une des zones"
+    },
+    {
+      "label": "Ø5/32 THRU",
+      "categorie": "perçage traversant",
+      "role": "indique un trou traversant visible en coupe A-A"
+    }
+  ],
+  "relations_macro": [
+    {
+      "de": "Zone gauche de la pièce",
+      "vers": "Zone droite de la pièce",
+      "nature": "continuité d’un même corps usiné avec changement de niveau sur la face supérieure"
+    },
+    {
+      "de": "Vue principale de gauche",
+      "vers": "SECTION A-A",
+      "nature": "la coupe A-A détaille le profil longitudinal et les perçages de la pièce"
+    },
+    {
+      "de": "Vue principale de gauche",
+      "vers": "SECTION B-B",
+      "nature": "la coupe B-B détaille localement une autre famille de perçages"
+    },
+    {
+      "de": "Tableaux Hole Table",
+      "vers": "vues cotées",
+      "nature": "association des repères de trous aux emplacements représentés"
+    }
+  ],
+  "codes_couleur": [],
+  "textes_importants": [
+    "USINAGE",
+    "USINER SELON LE FICHIER .STEP",
+    "BRACKET CALIBRATION 6 AXES",
+    "33951DEM2020",
+    "REVISION 0",
+    "OMNIFAB",
+    "AL 6061",
+    "POIDS 0.485 lbmass",
+    "PAGE 1 DE 1",
+    "PAR DÉFAUT / SYSTÈME DE MESURE IMPÉRIAL ANGLAIS"
+  ],
+  "incertitudes": [
+    "L’échelle n’a pas pu être lue avec certitude dans le cartouche fourni.",
+    "Le détail exhaustif de certains petits repères de trous est volontairement non repris ici car la demande porte sur une description macro.",
+    "La terminologie exacte de quelques états de trous (alésage/lamage précis selon norme) reste à confirmer vue la finesse des annotations."
+  ],
+  "agents": [
+    {
+      "role": "lecteur cartouche/OCR",
+      "apport": "a identifié le titre, le numéro de plan, la révision, l’entreprise, la matière et les textes importants du cartouche"
+    },
+    {
+      "role": "cartographe des vues",
+      "apport": "a structuré la feuille en zones fonctionnelles et identifié les vues principales, coupes, perspectives, tableaux et notes"
+    },
+    {
+      "role": "analyste contenu mécanique",
+      "apport": "a qualifié la pièce comme un support/bride usiné à deux niveaux et a résumé les grandes familles de perçages et le rôle des sections"
+    }
+  ],
+  "methodes_utilisees": [
+    "OCR",
+    "recadrages ciblés",
+    "vérification visuelle/VLM",
+    "inspection globale des vues",
+    "lecture des coupes et tableaux"
+  ]
+}
