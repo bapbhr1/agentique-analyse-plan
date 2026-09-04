@@ -71,16 +71,6 @@ Résultats dans `output/` : `<image>_macro.json` et les montages
 `<image>_synthese_*.png`. Les artefacts intermédiaires des agents restent dans
 `travail/<image>/`. Ces deux dossiers sont ignorés par Git.
 
-## Développement
-
-```bash
-pip install -r requirements-dev.txt
-ruff check .
-pytest
-```
-
-La CI GitHub Actions (`.github/workflows/ci.yml`) lance lint + tests sur chaque
-push et PR.
 
 ## Stack
 
