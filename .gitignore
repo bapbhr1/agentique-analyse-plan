@@ -31,8 +31,10 @@ venv/
 env/
 ENV/
 
-# Fichiers de travail générés par les agents (snippets exécutés)
-travail/**/__snippet__.py
+# Sorties de run et artefacts intermédiaires produits par les agents.
+# Un run d'exemple versionné est fourni dans examples/.
+/output/
+/travail/
 
 # Caches & outils
 .pytest_cache/

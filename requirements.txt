@@ -1,6 +1,16 @@
-# Systeme multi-agents de description de plans (VLM Azure)
-openai
-python-dotenv
-opencv-python
-Pillow
-easyocr   # optionnel : OCR utilise par certains snippets de workers
+# Système multi-agents de description de plans techniques.
+# Versions testées avec Python 3.12.
+
+openai==3.8.0
+python-dotenv==1.2.3
+
+# Vision / traitement d'image utilisés par le code des workers.
+opencv-python==5.0.0.93
+numpy==2.5.2
+scikit-image==0.26.0
+Pillow==12.3.0
+
+# OCR hors-ligne (EasyOCR). ⚠ Installe torch + torchvision (~2 Go de dépendances).
+# Retirable si vos plans ne nécessitent pas d'OCR : les workers testent la
+# disponibilité de `ocr(...)` et signalent l'incertitude si absent.
+easyocr==1.7.2

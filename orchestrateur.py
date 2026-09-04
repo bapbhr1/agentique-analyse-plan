@@ -12,7 +12,7 @@ import time
 from pathlib import Path
 
 import config
-from llm import creer_client, msg_image, assistant_dict
+from llm import assistant_dict, creer_client, msg_image
 from outils import Blackboard, valider_description_macro
 from worker import executer_sous_tache
 
@@ -245,6 +245,5 @@ def orchestrer(image_path: str) -> dict:
         "resume_macro": "Analyse non aboutie dans le budget imparti.",
         "elements_cles": [],
         "_incomplet": True,
-        "_resultats_partiels": bb.resultats,
         "_workers": bb.resultats,
     }

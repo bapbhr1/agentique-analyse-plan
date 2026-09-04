@@ -4,12 +4,21 @@
 import base64
 from pathlib import Path
 
-from openai import OpenAI
+from openai import AzureOpenAI, OpenAI
 
 import config
 
 
-def creer_client() -> OpenAI:
+def creer_client():
+    # Vrai endpoint Azure (api-version renseignée) -> client AzureOpenAI.
+    # Sinon : endpoint compatible OpenAI (passerelle) -> client OpenAI + base_url.
+    config.verifier_identifiants()
+    if config.API_VERSION:
+        return AzureOpenAI(
+            azure_endpoint=config.ENDPOINT,
+            api_key=config.API_KEY,
+            api_version=config.API_VERSION,
+        )
     return OpenAI(base_url=config.ENDPOINT, api_key=config.API_KEY)
 
 

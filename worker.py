@@ -9,9 +9,13 @@ import json
 from pathlib import Path
 
 import config
-from llm import msg_image, assistant_dict
+from llm import assistant_dict, msg_image
 from outils import (
-    Blackboard, ContexteWorker, OUTILS_WORKER, dispatch_worker, valider_sous_tache,
+    OUTILS_WORKER,
+    Blackboard,
+    ContexteWorker,
+    dispatch_worker,
+    valider_sous_tache,
 )
 
 _ICI = Path(__file__).parent

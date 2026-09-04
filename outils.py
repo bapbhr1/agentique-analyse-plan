@@ -11,19 +11,17 @@
 #   - voir_artefact(nom_fichier)          : revoir soi-même une image produite
 #   - terminer_sous_tache(resultat_json)  : rendre le résultat structuré de la tâche
 
-import sys
-import json
-import subprocess
-import textwrap
 import hashlib
+import json
+import os
+import subprocess
+import sys
+import textwrap
 from dataclasses import dataclass, field
 from pathlib import Path
 
-import cv2
-
 import config
 from llm import demander_vlm
-
 
 # ============================================================
 # État partagé entre tous les agents (tableau noir)
@@ -233,6 +231,14 @@ os.chdir(WORK_DIR)
 """
 
 
+def _env_sous_processus() -> dict:
+    # environnement filtré pour le code écrit par le modèle : on retire les
+    # secrets du process parent (clés API…) — ce code n'a aucune raison d'y toucher.
+    interdits = ("API_KEY", "_KEY", "SECRET", "TOKEN", "AZURE_OPENAI")
+    return {k: v for k, v in os.environ.items()
+            if not any(motif in k.upper() for motif in interdits)}
+
+
 HELPERS_OCR = '''
 _OCR_READERS = {}
 def _reader_ocr(langs):
@@ -276,6 +282,7 @@ def _executer_code(ctx: ContexteWorker, code: str) -> str:
             [sys.executable, str(fichier)],
             capture_output=True, text=True,
             timeout=config.TIMEOUT_CODE, cwd=str(ctx.work_dir),
+            env=_env_sous_processus(),
         )
     except subprocess.TimeoutExpired:
         ctx.nb_erreurs_code += 1

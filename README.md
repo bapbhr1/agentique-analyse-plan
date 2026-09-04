@@ -6,10 +6,9 @@ Python (OCR, recadrage, isolation de couleur, contours…), se relit par VLM, pu
 rend son résultat. Sortie finale : une description macro en JSON, plus des
 montages qui tracent « quel agent a fait quoi ».
 
-'Exemple de plan provenant d'internet'
 <p align="center">
-    <img width="1920" height="1242" alt="image" src="https://github.com/user-attachments/assets/8b9126f2-79bc-486a-99a1-331da9995a25" />
-
+  <img src="dataset_exemple/Dessin-ind-Omnifab-bracket-1.jpg"
+       alt="Exemple de plan (source : internet)" width="760">
 </p>
 
 ## Le parti pris
@@ -46,53 +45,69 @@ VLM, et un temps total. Un code identique relancé est refusé, et un budget ép
 force l'agent à conclure plutôt qu'à boucler.
 
 <p align="center">
-  <img src="output/Dessin-ind-Omnifab-bracket-1_synthese_02.png" alt="Détail par agent worker" width="700">
+  <img src="examples/Dessin-ind-Omnifab-bracket-1/synthese_02.png"
+       alt="Détail par agent worker" width="700">
 </p>
 
-## Lancement
+Un run d'exemple complet (JSON macro + montages + artefacts intermédiaires) est
+versionné dans [`examples/`](examples/).
 
-Ce projet est extrait d'un benchmark plus large (sous-dossier) : le fichier
-`.env` est lu **un niveau au-dessus** (`config.py` → `parents[1]/.env`).
+## Lancement
 
 ```bash
 pip install -r requirements.txt
 
-# .env à la racine du repo parent :
+cp .env.example .env        # puis renseigner les valeurs
 #   AZURE_OPENAI_ENDPOINT=...
 #   AZURE_OPENAI_API_KEY=...
-#   AZURE_OPENAI_DEPLOYMENT=...   # nom du déploiement Azure (défaut : gpt-5.4)
+#   AZURE_OPENAI_DEPLOYMENT=...        # nom du déploiement (défaut : gpt-4o)
+#   AZURE_OPENAI_API_VERSION=...       # optionnel : active le client AzureOpenAI
 
 python run.py chemin/vers/mon_plan.png
 ```
 
+Le `.env` est cherché à la racine de ce repo, puis un cran au-dessus en repli.
 Résultats dans `output/` : `<image>_macro.json` et les montages
 `<image>_synthese_*.png`. Les artefacts intermédiaires des agents restent dans
-`travail/<image>/`.
+`travail/<image>/`. Ces deux dossiers sont ignorés par Git.
+
+## Développement
+
+```bash
+pip install -r requirements-dev.txt
+ruff check .
+pytest
+```
+
+La CI GitHub Actions (`.github/workflows/ci.yml`) lance lint + tests sur chaque
+push et PR.
 
 ## Stack
 
-Python 3 · Azure OpenAI (function calling), déploiement `gpt-5.4` · OpenCV + NumPy
-· EasyOCR · scikit-image · Pillow
+Python 3.12 · API compatible OpenAI (function calling) — Azure OpenAI ou
+passerelle équivalente · OpenCV + NumPy · EasyOCR · scikit-image · Pillow
 
 ## Structure
 
-| Fichier | Rôle |
+| Chemin | Rôle |
 | --- | --- |
 | `run.py` | Point d'entrée CLI |
 | `orchestrateur.py` | Planification + délégation |
 | `worker.py` | Agent worker générique |
 | `outils.py` | Sandbox, outils worker, validation JSON |
-| `llm.py` | Client Azure + vérification VLM |
+| `llm.py` | Client modèle + vérification VLM |
 | `montage.py` | Montages de synthèse |
 | `config.py` | Identifiants + budgets |
 | `prompts/` | Missions orchestrateur & worker |
-| `output/`, `travail/` | Sortie structurée / artefacts produits par les agents |
+| `tests/` | Tests unitaires (validation, sandbox, mise en page) |
+| `examples/` | Run d'exemple versionné (entrée, JSON, montages, artefacts) |
+| `dataset_exemple/` | Image de plan d'exemple |
 
 ## Limites
 
 - **Exécution de code non confinée** : le code écrit par les agents tourne dans un
-  sous-processus local (timeout, mais pas d'isolation réseau ni filesystem). À
-  n'utiliser que sur des images de confiance.
+  sous-processus local (timeout, environnement filtré des secrets, mais pas
+  d'isolation réseau ni filesystem). À n'utiliser que sur des images de confiance.
 - **Portée** : validé sur un jeu de plans restreint ; reste à éprouver sur
   d'autres familles (P&ID, électrique…).
 - **Niveau macro assumé** : l'extraction fine de toutes les cotes n'est pas
