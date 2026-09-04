@@ -1,4 +1,4 @@
-"""Validation des JSON rendus par les agents (schémas maison, sans dépendance)."""
+# Validation des JSON rendus par les agents (schémas maison, sans dépendance).
 
 import pytest
 

@@ -1,4 +1,4 @@
-"""Bac à sable worker : compteurs de budget, refus du code identique, env filtré."""
+# Bac à sable worker : compteurs de budget, refus du code identique, env filtré.
 
 from pathlib import Path
 

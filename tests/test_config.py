@@ -1,4 +1,4 @@
-"""Garde-fou : configuration modèle absente -> échec explicite et précoce."""
+# Garde-fou : configuration modèle absente -> échec explicite et précoce.
 
 import pytest
 

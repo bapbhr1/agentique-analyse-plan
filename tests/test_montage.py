@@ -1,4 +1,4 @@
-"""Helpers de mise en page du montage de synthèse (pur, sans I/O)."""
+# Helpers de mise en page du montage de synthèse (pur, sans I/O).
 
 from PIL import Image, ImageDraw
 

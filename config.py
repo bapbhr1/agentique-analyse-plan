@@ -45,7 +45,7 @@ STDOUT_MAX_CHARS = 6000    # troncature de la sortie renvoyée au modèle
 
 
 def verifier_identifiants() -> None:
-    """Échoue tôt, avec un message clair, si la config modèle est absente."""
+    # échoue tôt, avec un message clair, si la config modèle est absente
     manquants = [nom for nom, val in (
         ("AZURE_OPENAI_ENDPOINT", ENDPOINT),
         ("AZURE_OPENAI_API_KEY", API_KEY),
