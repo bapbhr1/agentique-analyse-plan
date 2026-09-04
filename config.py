@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 # projet a d'abord vécu comme sous-dossier d'un benchmark plus large.
 _ICI = Path(__file__).resolve().parent
 load_dotenv(_ICI / ".env")
-load_dotenv(_ICI.parents[0] / ".env")
+load_dotenv(_ICI.parent / ".env")
 
 # ---- Modèle (API compatible OpenAI : Azure OpenAI ou passerelle équivalente) ----
 ENDPOINT        = os.getenv("AZURE_OPENAI_ENDPOINT")
