@@ -51,7 +51,7 @@ force l'agent à conclure plutôt qu'à boucler.
 
 ## Lancement
 
-Ce projet est pensé comme un sous-dossier d'un repo plus large : le fichier
+Ce projet est extrait d'un benchmark plus large (sous-dossier) : le fichier
 `.env` est lu **un niveau au-dessus** (`config.py` → `parents[1]/.env`).
 
 ```bash
