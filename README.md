@@ -8,7 +8,8 @@ montages qui tracent « quel agent a fait quoi ».
 
 'Exemple de plan provenant d'internet'
 <p align="center">
-<img width="1920" height="1242" alt="Dessin-ind-Omnifab-bracket-1" src="https://github.com/user-attachments/assets/cbaaae24-aaab-4cdf-af48-02598a67d75a" />
+    <img width="1920" height="1242" alt="image" src="https://github.com/user-attachments/assets/8b9126f2-79bc-486a-99a1-331da9995a25" />
+
 </p>
 
 ## Le parti pris
